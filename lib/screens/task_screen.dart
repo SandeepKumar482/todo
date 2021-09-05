@@ -54,13 +54,20 @@ class TaskScreen extends StatelessWidget {
                 SizedBox(
                   height: 06,
                 ),
-                Text(
-                  '${Provider.of<TasKData>(context, listen: true).task.length} Tasks',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w100,
-                      wordSpacing: 02,
-                      color: Colors.white),
+                FutureBuilder(
+                  future:
+                      Provider.of<TasKData>(context, listen: true).getCount(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<int?> snapshot) {
+                    return Text(
+                      '${snapshot.data} Tasks',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                          wordSpacing: 02,
+                          color: Colors.white),
+                    );
+                  },
                 )
               ],
             ),

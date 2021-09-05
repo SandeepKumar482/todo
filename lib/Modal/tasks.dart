@@ -1,11 +1,18 @@
 class Task {
-  // final int id;
+  final int? id;
   final String name;
   bool isDone;
-  Task({required this.name, this.isDone = false});
+  Task({this.id, required this.name, this.isDone = false});
+
   void toggleDone() {
     isDone = !isDone;
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'isChecked': (isDone) ? 1 : 0,
+    };
+  }
 }
-

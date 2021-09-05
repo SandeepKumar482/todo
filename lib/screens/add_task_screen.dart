@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Modal/task_data.dart';
+import 'package:todo/Modal/tasks.dart';
+import 'package:todo/database/tasks_databse.dart';
 
 class AddTask extends StatelessWidget {
   const AddTask({Key? key}) : super(key: key);
@@ -53,10 +55,14 @@ class AddTask extends StatelessWidget {
             ),
             RawMaterialButton(
               elevation: 05,
-              onPressed: () {
-                print("new tti $newTitle");
-                Provider.of<TasKData>(context, listen: false).addTask(newTitle);
-                Navigator.pop(context);
+              onPressed: () async {
+                if (newTitle != null) {
+                  TaskDatabase helper = TaskDatabase.init();
+                  await helper.newInsert(Task(name: newTitle));
+                  Provider.of<TasKData>(context, listen: false)
+                      .addTask(newTitle);
+                  Navigator.pop(context);
+                }
               },
               fillColor: Colors.blueAccent,
               child: Center(
