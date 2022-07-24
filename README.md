@@ -1,5 +1,5 @@
 # todo
- It is a work listing app completely based on Android Database.
+ It is a work listing app completely based on Sqflite Database.
  
  
  ![image](https://user-images.githubusercontent.com/85051352/132005868-d8f4605d-8932-4838-8e6c-dec2226e72cf.png)
